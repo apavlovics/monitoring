@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lv.continuum.monitoring.exception.AccountNotFoundException;
 import lv.continuum.monitoring.model.Account;
 import lv.continuum.monitoring.repo.AccountRepository;
 
@@ -23,8 +24,9 @@ public class AccountController {
     private AccountRepository accountRepository;
 
     @GetMapping(value = "/{accountId}", consumes = MediaType.ALL_VALUE)
-    public Account getAccount(@PathVariable long accountId) {
-        return accountRepository.findOne(accountId);
+    public Account getAccount(@PathVariable long accountId) throws Exception {
+        return accountRepository.findOne(accountId)
+                .orElseThrow(() -> new AccountNotFoundException(accountId));
     }
 
     @PostMapping
