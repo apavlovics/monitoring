@@ -29,7 +29,8 @@ import lv.continuum.monitoring.repo.RecordRepository;
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountController {
 
-    private static final ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private AccountRepository accountRepository;
