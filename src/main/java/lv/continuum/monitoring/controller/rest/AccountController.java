@@ -44,28 +44,32 @@ public class AccountController {
     }
 
     @PostMapping
-    public Account saveAccountDto(
+    public AccountDto saveAccountDto(
             @RequestBody @Validated AccountDto accountDto) {
         Account account = modelMapper.map(accountDto, Account.class);
-        return accountRepository.save(account);
+
+        Account savedAccount = accountRepository.save(account);
+        return modelMapper.map(savedAccount, AccountDto.class);
     }
 
     @GetMapping(value = "/{accountId}/records", consumes = MediaType.ALL_VALUE)
     public List<RecordDto> getRecordsByAccountId(
             @PathVariable long accountId) throws Exception {
         Account account = getAccount(accountId);
-        List<Record> records = recordRepository.findByAccount(account);
+        List<Record> records = recordRepository.findByAccountOrderByCreatedAtDesc(account);
         return modelMapper.map(records, new TypeToken<List<RecordDto>>() {}.getType());
     }
 
     @PostMapping(value = "/{accountId}/records")
-    public Record saveRecord(
+    public RecordDto saveRecord(
             @PathVariable long accountId,
             @RequestBody @Validated RecordDto recordDto) throws Exception {
         Account account = getAccount(accountId);
         Record record = modelMapper.map(recordDto, Record.class);
         record.setAccount(account);
-        return recordRepository.save(record);
+
+        Record savedRecord = recordRepository.save(record);
+        return modelMapper.map(savedRecord, RecordDto.class);
     }
 
     private Account getAccount(long accountId) throws AccountNotFoundException {

@@ -1,5 +1,7 @@
 package lv.continuum.monitoring.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,4 +32,7 @@ public class Record {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RecordType recordType;
+
+    @Column(nullable = false)
+    private Date createdAt;
 }

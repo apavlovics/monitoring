@@ -9,5 +9,5 @@ import lv.continuum.monitoring.model.Record;
 
 public interface RecordRepository extends JpaRepository<Record, Long> {
 
-    List<Record> findByAccount(Account account);
+    List<Record> findByAccountOrderByCreatedAtDesc(Account account);
 }
