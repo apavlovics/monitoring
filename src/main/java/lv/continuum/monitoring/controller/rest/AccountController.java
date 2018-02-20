@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
 import lv.continuum.monitoring.exception.AccountNotFoundException;
 import lv.continuum.monitoring.model.Account;
 import lv.continuum.monitoring.model.Record;
@@ -36,6 +37,7 @@ public class AccountController {
     @Autowired
     private RecordRepository recordRepository;
 
+    @ApiOperation("Get the account by the account id")
     @GetMapping(value = "/{accountId}", consumes = MediaType.ALL_VALUE)
     public AccountDto getAccountDto(
             @PathVariable long accountId) throws Exception {
@@ -43,6 +45,7 @@ public class AccountController {
         return modelMapper.map(account, AccountDto.class);
     }
 
+    @ApiOperation("Save the given account")
     @PostMapping
     public AccountDto saveAccountDto(
             @RequestBody @Validated AccountDto accountDto) {
@@ -52,6 +55,7 @@ public class AccountController {
         return modelMapper.map(savedAccount, AccountDto.class);
     }
 
+    @ApiOperation("Get the records by the account id")
     @GetMapping(value = "/{accountId}/records", consumes = MediaType.ALL_VALUE)
     public List<RecordDto> getRecordsByAccountId(
             @PathVariable long accountId) throws Exception {
@@ -60,6 +64,7 @@ public class AccountController {
         return modelMapper.map(records, new TypeToken<List<RecordDto>>() {}.getType());
     }
 
+    @ApiOperation("Save the given record")
     @PostMapping(value = "/{accountId}/records")
     public RecordDto saveRecord(
             @PathVariable long accountId,

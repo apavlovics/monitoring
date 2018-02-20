@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import lv.continuum.monitoring.util.VersionUtils;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -36,13 +37,12 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     @Bean
     public Docket api() {
 
-        // TODO: Add model definitions.
         // Global response error codes and their reasons
         List<ResponseMessage> responseMessages = new ArrayList<>();
         responseMessages.add(new ResponseMessageBuilder().code(HttpStatus.BAD_REQUEST.value())
                 .message(HttpStatus.BAD_REQUEST.getReasonPhrase()).build());
-        responseMessages.add(new ResponseMessageBuilder().code(HttpStatus.FORBIDDEN.value())
-                .message(HttpStatus.FORBIDDEN.getReasonPhrase()).build());
+        responseMessages.add(new ResponseMessageBuilder().code(HttpStatus.NOT_FOUND.value())
+                .message(HttpStatus.NOT_FOUND.getReasonPhrase()).build());
         responseMessages.add(new ResponseMessageBuilder().code(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .message(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase()).build());
 
@@ -61,11 +61,9 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     }
 
     private ApiInfo apiInfo() {
-
-        // TODO: Unhardcode version number.
         return new ApiInfoBuilder()
                 .title("Monitoring REST API")
-                .description("Version 0.0.0")
+                .description("Version " + VersionUtils.getVersionNumber())
                 .build();
     }
 }

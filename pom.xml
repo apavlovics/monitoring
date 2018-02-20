@@ -4,8 +4,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>lv.continuum</groupId>
   <artifactId>monitoring</artifactId>
+  <version>0.0.1</version>
   <name>Monitoring</name>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -61,11 +62,18 @@
       <scope>compile</scope>
     </dependency>
 
-    <!-- Model mappings -->
+    <!-- Mappings -->
     <dependency>
       <groupId>org.modelmapper</groupId>
       <artifactId>modelmapper</artifactId>
       <version>1.1.0</version>
+    </dependency>
+
+    <!-- Apache Commons -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.7</version>
     </dependency>
 
     <!-- Lombok -->
@@ -80,6 +88,18 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+        </configuration>
       </plugin>
     </plugins>
   </build>

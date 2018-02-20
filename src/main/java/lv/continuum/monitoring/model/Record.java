@@ -30,7 +30,7 @@ public class Record {
     private Account account;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private RecordType recordType;
 
     @Column(nullable = false)
