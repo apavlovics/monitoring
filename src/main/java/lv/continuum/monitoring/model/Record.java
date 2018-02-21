@@ -13,21 +13,19 @@ import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "records")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(of = "id")
 public class Record {
 
     @Id
     @GeneratedValue
     private long id;
-
-    @JoinColumn(name = "accountId", nullable = false)
-    @ManyToOne(optional = false)
-    private Account account;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 100)
@@ -35,4 +33,8 @@ public class Record {
 
     @Column(nullable = false)
     private Date createdAt;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "accountId", nullable = false)
+    private Account account;
 }
