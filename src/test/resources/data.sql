@@ -1,3 +1,5 @@
+-- Insert test data
+
 INSERT INTO accounts (username) VALUES
   ('test'),
   ('other');

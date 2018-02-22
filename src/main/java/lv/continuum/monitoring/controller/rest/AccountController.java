@@ -58,7 +58,7 @@ public class AccountController {
 
     @ApiOperation("Get the records by the account id")
     @GetMapping(value = "/{accountId}/records", consumes = MediaType.ALL_VALUE)
-    public List<RecordDto> getRecordsByAccountId(
+    public List<RecordDto> getRecordDtosByAccountId(
             @PathVariable long accountId) throws Exception {
         Account account = getAccount(accountId);
         List<Record> records = recordRepository.findByAccountOrderByCreatedAtDesc(account);
@@ -67,7 +67,7 @@ public class AccountController {
 
     @ApiOperation("Save the given record")
     @PostMapping(value = "/{accountId}/records")
-    public RecordDto saveRecord(
+    public RecordDto saveRecordDto(
             @PathVariable long accountId,
             @RequestBody @Validated RecordDto recordDto) throws Exception {
         Account account = getAccount(accountId);
