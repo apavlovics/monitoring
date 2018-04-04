@@ -25,4 +25,4 @@ To run this application, go to its root folder and execute:
 
     mvn spring-boot:run
 
-The application will start at http://localhost:8090 by default. Open this URL to see Swagger UI with the detailed description of available APIs.
+The application starts at http://localhost:8090 by default. Open this URL to see Swagger UI with the detailed description of available APIs.
