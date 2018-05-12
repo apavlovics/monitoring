@@ -7,7 +7,7 @@
     </encoder>
   </appender>
 
-  <logger name="com.crossover">
+  <logger name="lv.continuum">
     <level value="DEBUG" />
   </logger>
 
