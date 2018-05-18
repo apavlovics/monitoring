@@ -1,6 +1,6 @@
 # Monitoring
 
-This sample application shows how to build a simple REST API using Spring Boot, MVC and Data JPA. It exposes methods to manage accounts and monitor their activities. Monitoring uses in-memory HSQLDB and does not persist data across launches. This is a deliberate choice for the sample application.
+This sample application shows how to build a simple REST API using Spring Boot, Spring MVC and Spring Data JPA. It exposes methods to manage accounts and monitor their activities. Monitoring uses in-memory HSQLDB and does not persist data across launches. This is a deliberate choice for the sample application.
 
 ## System Requirements
 
