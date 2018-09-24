@@ -1,7 +1,4 @@
-.settings/
+.idea/
+logs/
+project/
 target/
-
-.cache-*
-.classpath
-.project
-.spring*
