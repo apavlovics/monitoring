@@ -1,9 +1,8 @@
 package lv.continuum.monitoring.model;
 
+import lv.continuum.monitoring.config.MonitoringConfiguration;
 import org.junit.Assert;
 import org.modelmapper.ModelMapper;
-
-import lv.continuum.monitoring.config.MonitoringConfiguration;
 
 public abstract class AbstractModelTest {
 

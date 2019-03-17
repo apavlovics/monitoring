@@ -1,10 +1,9 @@
 package lv.continuum.monitoring.model.dto;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import lv.continuum.monitoring.model.AbstractModelTest;
 import lv.continuum.monitoring.model.Account;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class AccountDtoTest extends AbstractModelTest {
 

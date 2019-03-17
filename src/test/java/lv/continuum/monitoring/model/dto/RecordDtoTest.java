@@ -1,13 +1,12 @@
 package lv.continuum.monitoring.model.dto;
 
-import java.util.Date;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import lv.continuum.monitoring.model.AbstractModelTest;
 import lv.continuum.monitoring.model.Record;
 import lv.continuum.monitoring.model.RecordType;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Date;
 
 public class RecordDtoTest extends AbstractModelTest {
 

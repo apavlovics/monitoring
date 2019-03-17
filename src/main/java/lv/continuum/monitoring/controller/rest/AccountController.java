@@ -1,7 +1,13 @@
 package lv.continuum.monitoring.controller.rest;
 
-import java.util.List;
-
+import io.swagger.annotations.ApiOperation;
+import lv.continuum.monitoring.exception.AccountNotFoundException;
+import lv.continuum.monitoring.model.Account;
+import lv.continuum.monitoring.model.Record;
+import lv.continuum.monitoring.model.dto.AccountDto;
+import lv.continuum.monitoring.model.dto.RecordDto;
+import lv.continuum.monitoring.repo.AccountRepository;
+import lv.continuum.monitoring.repo.RecordRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.ApiOperation;
-import lv.continuum.monitoring.exception.AccountNotFoundException;
-import lv.continuum.monitoring.model.Account;
-import lv.continuum.monitoring.model.Record;
-import lv.continuum.monitoring.model.dto.AccountDto;
-import lv.continuum.monitoring.model.dto.RecordDto;
-import lv.continuum.monitoring.repo.AccountRepository;
-import lv.continuum.monitoring.repo.RecordRepository;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/accounts",
@@ -79,7 +78,7 @@ public class AccountController {
     }
 
     private Account getAccount(long accountId) throws AccountNotFoundException {
-        return accountRepository.findOne(accountId)
+        return accountRepository.findById(accountId)
                 .orElseThrow(() -> new AccountNotFoundException(accountId));
     }
 }

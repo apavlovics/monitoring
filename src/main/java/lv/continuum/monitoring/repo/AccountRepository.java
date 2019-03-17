@@ -1,12 +1,6 @@
 package lv.continuum.monitoring.repo;
 
-import java.util.Optional;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import lv.continuum.monitoring.model.Account;
+import org.springframework.data.repository.CrudRepository;
 
-public interface AccountRepository extends JpaRepository<Account, Long> {
-
-    Optional<Account> findOne(long accountId);
-}
+public interface AccountRepository extends CrudRepository<Account, Long> {}

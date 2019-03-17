@@ -1,16 +1,14 @@
 package lv.continuum.monitoring.model.dto;
 
-import java.util.Date;
-
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lv.continuum.monitoring.model.RecordType;
+
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor

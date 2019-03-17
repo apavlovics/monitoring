@@ -1,8 +1,8 @@
 package lv.continuum.monitoring.model;
 
-import java.util.Date;
-
 import org.junit.Test;
+
+import java.util.Date;
 
 public class RecordTest extends AbstractModelTest {
 
