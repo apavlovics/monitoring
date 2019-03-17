@@ -7,7 +7,7 @@ This sample application shows how to build a simple REST API using Spring Boot, 
 This application is tested to work with:
 
 * Java 11
-* Maven 3.3
+* Maven 3.6
 
 ## Configuration
 
