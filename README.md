@@ -6,7 +6,7 @@ HSQLDB and does not persist data across launches. This is a deliberate choice fo
 
 ## System Requirements
 
-This application is tested to work with:
+The application is tested to work with:
 
 * Java 11
 * Maven 3.6
@@ -17,13 +17,13 @@ The configuration for Spring Boot and Logback is stored in the *src/main/resourc
 
 ## Testing
 
-To test this application, go to its root folder and execute:
+To test the application, go to its root folder and execute:
 
     mvn test
 
 ## Running
 
-To run this application, go to its root folder and execute:
+To run the application, go to its root folder and execute:
 
     mvn spring-boot:run
 
