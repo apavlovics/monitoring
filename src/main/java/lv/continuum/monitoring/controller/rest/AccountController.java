@@ -36,7 +36,7 @@ public class AccountController {
     @GetMapping(value = "/{accountId}", consumes = MediaType.ALL_VALUE)
     public AccountDto getAccountDto(
             @PathVariable long accountId) throws Exception {
-        Account account = getAccount(accountId);
+        var account = getAccount(accountId);
         return modelMapper.map(account, AccountDto.class);
     }
 
@@ -44,9 +44,9 @@ public class AccountController {
     @PostMapping
     public AccountDto saveAccountDto(
             @RequestBody @Validated AccountDto accountDto) {
-        Account account = modelMapper.map(accountDto, Account.class);
+        var account = modelMapper.map(accountDto, Account.class);
 
-        Account savedAccount = accountRepository.save(account);
+        var savedAccount = accountRepository.save(account);
         return modelMapper.map(savedAccount, AccountDto.class);
     }
 
@@ -54,8 +54,8 @@ public class AccountController {
     @GetMapping(value = "/{accountId}/records", consumes = MediaType.ALL_VALUE)
     public List<RecordDto> getRecordDtosByAccountId(
             @PathVariable long accountId) throws Exception {
-        Account account = getAccount(accountId);
-        List<Record> records = recordRepository.findByAccountOrderByCreatedAtDesc(account);
+        var account = getAccount(accountId);
+        var records = recordRepository.findByAccountOrderByCreatedAtDesc(account);
         return modelMapper.map(records, new TypeToken<List<RecordDto>>() {}.getType());
     }
 
@@ -64,11 +64,11 @@ public class AccountController {
     public RecordDto saveRecordDto(
             @PathVariable long accountId,
             @RequestBody @Validated RecordDto recordDto) throws Exception {
-        Account account = getAccount(accountId);
-        Record record = modelMapper.map(recordDto, Record.class);
+        var account = getAccount(accountId);
+        var record = modelMapper.map(recordDto, Record.class);
         record.setAccount(account);
 
-        Record savedRecord = recordRepository.save(record);
+        var savedRecord = recordRepository.save(record);
         return modelMapper.map(savedRecord, RecordDto.class);
     }
 

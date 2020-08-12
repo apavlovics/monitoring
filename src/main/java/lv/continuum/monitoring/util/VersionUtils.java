@@ -12,7 +12,7 @@ public class VersionUtils {
      * @return The version number or {@value #VERSION_NUMBER_DEFAULT}, if it is not known.
      */
     public static String getVersionNumber() {
-        String versionNumber = VersionUtils.class.getPackage().getImplementationVersion();
+        var versionNumber = VersionUtils.class.getPackage().getImplementationVersion();
         return StringUtils.isNotBlank(versionNumber) ? versionNumber : VERSION_NUMBER_DEFAULT;
     }
 }

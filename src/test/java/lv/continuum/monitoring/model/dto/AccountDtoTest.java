@@ -9,29 +9,29 @@ public class AccountDtoTest extends AbstractModelTest {
 
     @Test
     public void testMapToAccount() {
-        AccountDto accountDto = new AccountDto(123, "test");
+        var accountDto = new AccountDto(123, "test");
 
-        Account account = modelMapper.map(accountDto, Account.class);
+        var account = modelMapper.map(accountDto, Account.class);
         Assert.assertEquals(accountDto.getId(), account.getId());
         Assert.assertEquals(accountDto.getUsername(), account.getUsername());
     }
 
     @Test
     public void testMapFromAccount() {
-        Account account = new Account();
+        var account = new Account();
         account.setId(123);
         account.setUsername("test");
 
-        AccountDto accountDto = modelMapper.map(account, AccountDto.class);
+        var accountDto = modelMapper.map(account, AccountDto.class);
         Assert.assertEquals(account.getId(), accountDto.getId());
         Assert.assertEquals(account.getUsername(), accountDto.getUsername());
     }
 
     @Test
     public void testEqualsHashCodeToString() {
-        AccountDto accountDto = new AccountDto(123, "test");
-        AccountDto equalAccountDto = new AccountDto(123, "test");
-        AccountDto notEqualAccountDto = new AccountDto(123, "other");
+        var accountDto = new AccountDto(123, "test");
+        var equalAccountDto = new AccountDto(123, "test");
+        var notEqualAccountDto = new AccountDto(123, "other");
 
         super.testEqualsHashCodeToString(accountDto, equalAccountDto, notEqualAccountDto, false);
     }

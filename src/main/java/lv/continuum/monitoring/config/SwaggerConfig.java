@@ -2,7 +2,6 @@ package lv.continuum.monitoring.config;
 
 import lv.continuum.monitoring.util.VersionUtils;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
 
 @Configuration
-@ComponentScan("lv.continuum.monitoring.controller.rest")
 public class SwaggerConfig {
 
     @Bean
