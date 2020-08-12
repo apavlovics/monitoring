@@ -23,9 +23,9 @@ public class SwaggerConfig {
 
         // Global response error codes and their reasons
         var responses = new ArrayList<Response>();
-        responses.add(getResponse(HttpStatus.BAD_REQUEST));
-        responses.add(getResponse(HttpStatus.NOT_FOUND));
-        responses.add(getResponse(HttpStatus.INTERNAL_SERVER_ERROR));
+        responses.add(response(HttpStatus.BAD_REQUEST));
+        responses.add(response(HttpStatus.NOT_FOUND));
+        responses.add(response(HttpStatus.INTERNAL_SERVER_ERROR));
 
         var apiInfo = new ApiInfoBuilder()
                 .title("Monitoring REST API")
@@ -44,7 +44,7 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private Response getResponse(HttpStatus httpStatus) {
+    private Response response(HttpStatus httpStatus) {
         return new ResponseBuilder()
                 .code(String.valueOf(httpStatus.value()))
                 .description(httpStatus.getReasonPhrase())
