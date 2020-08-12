@@ -4,65 +4,52 @@ import lv.continuum.monitoring.util.VersionUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.builders.ResponseMessageBuilder;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ResponseMessage;
+import springfox.documentation.builders.ResponseBuilder;
+import springfox.documentation.service.Response;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
 
 @Configuration
-@EnableSwagger2
-@EnableWebMvc
 @ComponentScan("lv.continuum.monitoring.controller.rest")
-public class SwaggerConfig implements WebMvcConfigurer {
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/META-INF/resources/");
-    }
+public class SwaggerConfig {
 
     @Bean
-    public Docket api() {
+    public Docket docket() {
 
         // Global response error codes and their reasons
-        List<ResponseMessage> responseMessages = new ArrayList<>();
-        responseMessages.add(new ResponseMessageBuilder().code(HttpStatus.BAD_REQUEST.value())
-                .message(HttpStatus.BAD_REQUEST.getReasonPhrase()).build());
-        responseMessages.add(new ResponseMessageBuilder().code(HttpStatus.NOT_FOUND.value())
-                .message(HttpStatus.NOT_FOUND.getReasonPhrase()).build());
-        responseMessages.add(new ResponseMessageBuilder().code(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .message(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase()).build());
+        var responses = new ArrayList<Response>();
+        responses.add(getResponse(HttpStatus.BAD_REQUEST));
+        responses.add(getResponse(HttpStatus.NOT_FOUND));
+        responses.add(getResponse(HttpStatus.INTERNAL_SERVER_ERROR));
 
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("monitoring-rest-api")
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("lv.continuum.monitoring.controller.rest"))
-                .paths(PathSelectors.any())
-                .build()
-                .useDefaultResponseMessages(false)
-                .globalResponseMessage(RequestMethod.DELETE, responseMessages)
-                .globalResponseMessage(RequestMethod.GET, responseMessages)
-                .globalResponseMessage(RequestMethod.POST, responseMessages)
-                .globalResponseMessage(RequestMethod.PUT, responseMessages);
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
+        var apiInfo = new ApiInfoBuilder()
                 .title("Monitoring REST API")
                 .description("Version " + VersionUtils.getVersionNumber())
+                .build();
+
+        return new Docket(DocumentationType.OAS_30)
+                .apiInfo(apiInfo)
+                .useDefaultResponseMessages(false)
+                .globalResponses(HttpMethod.DELETE, responses)
+                .globalResponses(HttpMethod.GET, responses)
+                .globalResponses(HttpMethod.POST, responses)
+                .globalResponses(HttpMethod.PUT, responses)
+                .select()
+                .apis(basePackage("lv.continuum.monitoring.controller.rest"))
+                .build();
+    }
+
+    private Response getResponse(HttpStatus httpStatus) {
+        return new ResponseBuilder()
+                .code(String.valueOf(httpStatus.value()))
+                .description(httpStatus.getReasonPhrase())
                 .build();
     }
 }

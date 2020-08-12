@@ -1,13 +1,12 @@
 # Server
-server:
-  port: 8090
+server.port: 8090
 
 # Hibernate
-spring:
-  jpa:
-    properties:
-      hibernate:
-        hbm2ddl.auto: update
-        show_sql: true
-        use_sql_comments: true
-        format_sql: true
+spring.jpa.properties.hibernate:
+  hbm2ddl.auto: update
+  show_sql: true
+  use_sql_comments: true
+  format_sql: true
+
+# Uncomment to debug Swagger and Swagger UI issues
+# logging.level.springfox.documentation: DEBUG
