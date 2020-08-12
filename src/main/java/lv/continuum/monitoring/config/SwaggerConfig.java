@@ -21,7 +21,7 @@ public class SwaggerConfig {
     @Bean
     public Docket docket() {
 
-        // Global response error codes and their reasons
+        // Global response error codes and their descriptions
         var responses = new ArrayList<Response>();
         responses.add(response(HttpStatus.BAD_REQUEST));
         responses.add(response(HttpStatus.NOT_FOUND));
