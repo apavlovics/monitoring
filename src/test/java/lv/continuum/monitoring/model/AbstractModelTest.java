@@ -1,12 +1,12 @@
 package lv.continuum.monitoring.model;
 
-import lv.continuum.monitoring.config.MonitoringConfiguration;
+import lv.continuum.monitoring.config.MonitoringConfig;
 import org.junit.Assert;
 import org.modelmapper.ModelMapper;
 
 public abstract class AbstractModelTest {
 
-    protected static final ModelMapper modelMapper = new MonitoringConfiguration().modelMapper();
+    protected static final ModelMapper modelMapper = new MonitoringConfig().modelMapper();
 
     protected <T> void testEqualsHashCodeToString(T model, T equalModel, T notEqualModel, boolean isEntity) {
         Assert.assertEquals(model, equalModel);
