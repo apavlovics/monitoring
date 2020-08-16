@@ -2,8 +2,9 @@ package lv.continuum.monitoring.model.dto;
 
 import lv.continuum.monitoring.model.AbstractModelTest;
 import lv.continuum.monitoring.model.Account;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccountDtoTest extends AbstractModelTest {
 
@@ -12,8 +13,8 @@ public class AccountDtoTest extends AbstractModelTest {
         var accountDto = new AccountDto(123, "test");
 
         var account = modelMapper.map(accountDto, Account.class);
-        Assert.assertEquals(accountDto.getId(), account.getId());
-        Assert.assertEquals(accountDto.getUsername(), account.getUsername());
+        assertEquals(accountDto.getId(), account.getId());
+        assertEquals(accountDto.getUsername(), account.getUsername());
     }
 
     @Test
@@ -23,8 +24,8 @@ public class AccountDtoTest extends AbstractModelTest {
         account.setUsername("test");
 
         var accountDto = modelMapper.map(account, AccountDto.class);
-        Assert.assertEquals(account.getId(), accountDto.getId());
-        Assert.assertEquals(account.getUsername(), accountDto.getUsername());
+        assertEquals(account.getId(), accountDto.getId());
+        assertEquals(account.getUsername(), accountDto.getUsername());
     }
 
     @Test

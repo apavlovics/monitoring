@@ -3,10 +3,11 @@ package lv.continuum.monitoring.model.dto;
 import lv.continuum.monitoring.model.AbstractModelTest;
 import lv.continuum.monitoring.model.Record;
 import lv.continuum.monitoring.model.RecordType;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecordDtoTest extends AbstractModelTest {
 
@@ -15,9 +16,9 @@ public class RecordDtoTest extends AbstractModelTest {
         var recordDto = new RecordDto(123, RecordType.LOGIN, new Date());
 
         var record = modelMapper.map(recordDto, Record.class);
-        Assert.assertEquals(recordDto.getId(), record.getId());
-        Assert.assertEquals(recordDto.getRecordType(), record.getRecordType());
-        Assert.assertEquals(recordDto.getCreatedAt(), record.getCreatedAt());
+        assertEquals(recordDto.getId(), record.getId());
+        assertEquals(recordDto.getRecordType(), record.getRecordType());
+        assertEquals(recordDto.getCreatedAt(), record.getCreatedAt());
     }
 
     @Test
@@ -28,9 +29,9 @@ public class RecordDtoTest extends AbstractModelTest {
         record.setCreatedAt(new Date());
 
         var recordDto = modelMapper.map(record, RecordDto.class);
-        Assert.assertEquals(record.getId(), recordDto.getId());
-        Assert.assertEquals(record.getRecordType(), recordDto.getRecordType());
-        Assert.assertEquals(record.getCreatedAt(), recordDto.getCreatedAt());
+        assertEquals(record.getId(), recordDto.getId());
+        assertEquals(record.getRecordType(), recordDto.getRecordType());
+        assertEquals(record.getCreatedAt(), recordDto.getCreatedAt());
     }
 
     @Test

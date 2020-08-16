@@ -9,7 +9,7 @@ HSQLDB and does not persist data across launches. This is a deliberate choice fo
 The application is tested to work with:
 
 * Java 11
-* Maven 3.6
+* Gradle 6.6
 
 ## Configuration
 
@@ -19,13 +19,13 @@ The configuration for Spring Boot and Logback is stored in the *src/main/resourc
 
 To test the application, go to its root folder and execute:
 
-    mvn test
+    gradle test
 
 ## Running
 
 To run the application, go to its root folder and execute:
 
-    mvn spring-boot:run
+    gradle bootRun 
 
 The application starts at http://localhost:8090 by default. Open this URL to see Swagger UI with the detailed
 description of available APIs and have an opportunity to try them out.
