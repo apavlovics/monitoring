@@ -19,13 +19,13 @@ The configuration for Spring Boot and Logback is stored in the *src/main/resourc
 
 To test the application, go to its root folder and execute:
 
-    gradle test
+    ./gradlew test
 
 ## Running
 
 To run the application, go to its root folder and execute:
 
-    gradle bootRun 
+    ./gradlew bootRun 
 
 The application starts at http://localhost:8090 by default. Open this URL to see Swagger UI with the detailed
 description of available APIs and have an opportunity to try them out.
