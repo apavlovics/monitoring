@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -17,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class AccountControllerTest {
+class AccountControllerTest {
 
     @Autowired
     private WebApplicationContext context;
@@ -25,12 +26,12 @@ public class AccountControllerTest {
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
     @Test
-    public void testGetAccountDto() throws Exception {
+    void getAccountDto() throws Exception {
         mockMvc.perform(get("/accounts/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
@@ -38,7 +39,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testGetAccountDtoNotFound() throws Exception {
+    void getAccountDtoNotFound() throws Exception {
 
         // Error models cannot be tested due to MockMvc limitations
         // https://github.com/spring-projects/spring-boot/issues/5574
@@ -47,13 +48,14 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testGetAccountDtoBadRequest() throws Exception {
+    void getAccountDtoBadRequest() throws Exception {
         mockMvc.perform(get("/accounts/abc"))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void testSaveAccountDto() throws Exception {
+    @DirtiesContext
+    void saveAccountDto() throws Exception {
         mockMvc.perform(post("/accounts")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"username\":\"new\"}"))
@@ -63,14 +65,14 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testSaveAccountDtoUnsupportedMediaType() throws Exception {
+    void saveAccountDtoUnsupportedMediaType() throws Exception {
         mockMvc.perform(post("/accounts")
                 .content("{\"username\":\"new\"}"))
                 .andExpect(status().isUnsupportedMediaType());
     }
 
     @Test
-    public void testSaveAccountDtoBadRequest() throws Exception {
+    void saveAccountDtoBadRequest() throws Exception {
         mockMvc.perform(post("/accounts")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"username\":\"!!!\"}"))
@@ -78,7 +80,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testGetRecordDtosByAccountId() throws Exception {
+    void getRecordDtosByAccountId() throws Exception {
         mockMvc.perform(get("/accounts/1/records"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2))
@@ -90,19 +92,20 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testGetRecordDtosByAccountIdNotFound() throws Exception {
+    void getRecordDtosByAccountIdNotFound() throws Exception {
         mockMvc.perform(get("/accounts/150/records"))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    public void testGetRecordDtosByAccountIdBadRequest() throws Exception {
+    void getRecordDtosByAccountIdBadRequest() throws Exception {
         mockMvc.perform(get("/accounts/abc/records"))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void testSaveRecordDto() throws Exception {
+    @DirtiesContext
+    void saveRecordDto() throws Exception {
         mockMvc.perform(post("/accounts/1/records")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"recordType\":\"LOGIN\"}"))
@@ -113,23 +116,24 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testSaveRecordDtoUnsupportedMediaType() throws Exception {
+    void saveRecordDtoUnsupportedMediaType() throws Exception {
         mockMvc.perform(post("/accounts/1/records")
                 .content("{\"recordType\":\"LOGOUT\"}"))
                 .andExpect(status().isUnsupportedMediaType());
     }
 
     @Test
-    public void testSaveRecordDtoBadRequest() throws Exception {
+    void saveRecordDtoBadRequest() {
         String[] urlTemplates = {
                 "/accounts/abc/records",
                 "/accounts/1/records",
-                "/accounts/1/records"};
+                "/accounts/1/records"
+        };
         String[] contents = {
                 "{\"recordType\":\"LOGIN\"}",
                 "{\"recordType\":\"WRONG\"}",
-                "!!!"};
-
+                "!!!"
+        };
         IntStream.range(0, urlTemplates.length).forEach(i -> {
             try {
                 mockMvc.perform(post(urlTemplates[i])

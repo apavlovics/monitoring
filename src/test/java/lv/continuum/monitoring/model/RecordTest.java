@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-public class RecordTest extends AbstractModelTest {
+class RecordTest extends AbstractModelTest {
 
     @Test
-    public void testEqualsHashCodeToString() {
+    void equalsHashCodeToString() {
         var createdAt = new Date();
         var record = new Record(123, RecordType.LOGIN, createdAt, null);
         var equalRecord = new Record(123, RecordType.LOGOUT, createdAt, null);

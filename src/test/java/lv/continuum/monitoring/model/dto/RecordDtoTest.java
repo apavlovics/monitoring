@@ -9,10 +9,10 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RecordDtoTest extends AbstractModelTest {
+class RecordDtoTest extends AbstractModelTest {
 
     @Test
-    public void testMapToRecord() {
+    void mapToRecord() {
         var recordDto = new RecordDto(123, RecordType.LOGIN, new Date());
 
         var record = modelMapper.map(recordDto, Record.class);
@@ -22,7 +22,7 @@ public class RecordDtoTest extends AbstractModelTest {
     }
 
     @Test
-    public void testMapFromRecord() {
+    void mapFromRecord() {
         var record = new Record();
         record.setId(123);
         record.setRecordType(RecordType.LOGIN);
@@ -35,7 +35,7 @@ public class RecordDtoTest extends AbstractModelTest {
     }
 
     @Test
-    public void testEqualsHashCodeToString() {
+    void equalsHashCodeToString() {
         var createdAt = new Date();
         var recordDto = new RecordDto(123, RecordType.LOGIN, createdAt);
         var equalRecordDto = new RecordDto(123, RecordType.LOGIN, createdAt);

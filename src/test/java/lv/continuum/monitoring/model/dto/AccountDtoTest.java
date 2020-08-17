@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AccountDtoTest extends AbstractModelTest {
+class AccountDtoTest extends AbstractModelTest {
 
     @Test
-    public void testMapToAccount() {
+    void mapToAccount() {
         var accountDto = new AccountDto(123, "test");
 
         var account = modelMapper.map(accountDto, Account.class);
@@ -18,7 +18,7 @@ public class AccountDtoTest extends AbstractModelTest {
     }
 
     @Test
-    public void testMapFromAccount() {
+    void mapFromAccount() {
         var account = new Account();
         account.setId(123);
         account.setUsername("test");
@@ -29,7 +29,7 @@ public class AccountDtoTest extends AbstractModelTest {
     }
 
     @Test
-    public void testEqualsHashCodeToString() {
+    void equalsHashCodeToString() {
         var accountDto = new AccountDto(123, "test");
         var equalAccountDto = new AccountDto(123, "test");
         var notEqualAccountDto = new AccountDto(123, "other");
