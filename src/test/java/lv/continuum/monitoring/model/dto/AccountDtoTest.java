@@ -34,6 +34,6 @@ class AccountDtoTest extends AbstractModelTest {
         var equalAccountDto = new AccountDto(123, "test");
         var notEqualAccountDto = new AccountDto(123, "other");
 
-        super.testEqualsHashCodeToString(accountDto, equalAccountDto, notEqualAccountDto, false);
+        super.equalsHashCodeToString(accountDto, equalAccountDto, notEqualAccountDto, false);
     }
 }

@@ -10,6 +10,6 @@ class AccountTest extends AbstractModelTest {
         var equalAccount = new Account(123, "other", null);
         var notEqualAccount = new Account(124, "test", null);
 
-        super.testEqualsHashCodeToString(account, equalAccount, notEqualAccount, true);
+        super.equalsHashCodeToString(account, equalAccount, notEqualAccount, true);
     }
 }

@@ -41,6 +41,6 @@ class RecordDtoTest extends AbstractModelTest {
         var equalRecordDto = new RecordDto(123, RecordType.LOGIN, createdAt);
         var notEqualRecordDto = new RecordDto(123, RecordType.LOGOUT, new Date());
 
-        super.testEqualsHashCodeToString(recordDto, equalRecordDto, notEqualRecordDto, false);
+        super.equalsHashCodeToString(recordDto, equalRecordDto, notEqualRecordDto, false);
     }
 }

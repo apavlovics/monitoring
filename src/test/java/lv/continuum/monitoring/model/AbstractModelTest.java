@@ -10,7 +10,7 @@ public abstract class AbstractModelTest {
 
     protected static final ModelMapper modelMapper = new MonitoringConfig().modelMapper();
 
-    protected <T> void testEqualsHashCodeToString(T model, T equalModel, T notEqualModel, boolean isEntity) {
+    protected <T> void equalsHashCodeToString(T model, T equalModel, T notEqualModel, boolean isEntity) {
         assertEquals(model, equalModel);
         assertEquals(model.hashCode(), equalModel.hashCode());
 

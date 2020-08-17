@@ -13,6 +13,6 @@ class RecordTest extends AbstractModelTest {
         var equalRecord = new Record(123, RecordType.LOGOUT, createdAt, null);
         var notEqualRecord = new Record(124, RecordType.LOGIN, createdAt, null);
 
-        super.testEqualsHashCodeToString(record, equalRecord, notEqualRecord, true);
+        super.equalsHashCodeToString(record, equalRecord, notEqualRecord, true);
     }
 }
