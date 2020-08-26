@@ -27,8 +27,8 @@ public class SwaggerConfig {
         responses.add(response(HttpStatus.INTERNAL_SERVER_ERROR));
 
         var apiInfo = new ApiInfoBuilder()
-                .title("Monitoring REST API")
-                .description("Monitoring REST API exposes methods to manage accounts and monitor their activities.")
+                .title("Monitoring API")
+                .description("Monitoring API exposes methods to manage accounts and monitor their activities.")
                 .build();
 
         return new Docket(DocumentationType.OAS_30)
