@@ -1,6 +1,5 @@
 package lv.continuum.monitoring.config;
 
-import lv.continuum.monitoring.util.VersionUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -29,7 +28,7 @@ public class SwaggerConfig {
 
         var apiInfo = new ApiInfoBuilder()
                 .title("Monitoring REST API")
-                .description("Version " + VersionUtils.getVersionNumber())
+                .description("Monitoring REST API exposes methods to manage accounts and monitor their activities.")
                 .build();
 
         return new Docket(DocumentationType.OAS_30)
