@@ -49,7 +49,9 @@ class AccountControllerTest {
     void saveAccountDto() throws Exception {
         mockMvc.perform(post("/accounts")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"username\":\"new\"}"))
+                .content("""
+                        {"username": "new"}
+                        """))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.username").value("new"));
@@ -58,7 +60,9 @@ class AccountControllerTest {
     @Test
     void saveAccountDtoUnsupportedMediaType() throws Exception {
         mockMvc.perform(post("/accounts")
-                .content("{\"username\":\"new\"}"))
+                .content("""
+                        {"username": "new"}""
+                        """))
                 .andExpect(status().isUnsupportedMediaType());
     }
 
@@ -66,7 +70,9 @@ class AccountControllerTest {
     void saveAccountDtoBadRequest() throws Exception {
         mockMvc.perform(post("/accounts")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"username\":\"!!!\"}"))
+                .content("""
+                        {"username": "!!!"}
+                        """))
                 .andExpect(status().isBadRequest());
     }
 
@@ -77,9 +83,15 @@ class AccountControllerTest {
                 .andExpect(jsonPath("$.length()").value(2))
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[1].id").isNumber())
-                .andExpect(content().json(
-                        "[{\"recordType\":\"LOGOUT\",\"createdAt\":\"2018-01-03T09:30:45.000+0000\"}," +
-                                "{\"recordType\":\"LOGIN\",\"createdAt\":\"2018-01-02T18:08:08.000+0000\"}]"));
+                .andExpect(content().json("""
+                                [{
+                                  "recordType": "LOGOUT",
+                                  "createdAt": "2018-01-03T09:30:45.000+0000"
+                                }, {
+                                  "recordType": "LOGIN",
+                                  "createdAt": "2018-01-02T18:08:08.000+0000"
+                                }]
+                                """));
     }
 
     @Test
@@ -99,7 +111,9 @@ class AccountControllerTest {
     void saveRecordDto() throws Exception {
         mockMvc.perform(post("/accounts/1/records")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"recordType\":\"LOGIN\"}"))
+                .content("""
+                        {"recordType": "LOGIN"}
+                        """))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.recordType").value("LOGIN"))
@@ -109,7 +123,9 @@ class AccountControllerTest {
     @Test
     void saveRecordDtoUnsupportedMediaType() throws Exception {
         mockMvc.perform(post("/accounts/1/records")
-                .content("{\"recordType\":\"LOGOUT\"}"))
+                .content("""
+                        {"recordType": "LOGOUT"}
+                        """))
                 .andExpect(status().isUnsupportedMediaType());
     }
 
@@ -121,8 +137,12 @@ class AccountControllerTest {
                 "/accounts/1/records"
         };
         String[] contents = {
-                "{\"recordType\":\"LOGIN\"}",
-                "{\"recordType\":\"WRONG\"}",
+                """
+                {"recordType": "LOGIN"}
+                """,
+                """
+                {"recordType": "WRONG"}
+                """,
                 "!!!"
         };
         IntStream.range(0, urlTemplates.length).forEach(i -> {
