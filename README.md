@@ -8,7 +8,7 @@ HSQLDB and does not persist data across launches. This is a deliberate choice fo
 
 The application is tested to work with:
 
-* Java 11
+* Java 15
 * Gradle 6.6
 
 ## Configuration
