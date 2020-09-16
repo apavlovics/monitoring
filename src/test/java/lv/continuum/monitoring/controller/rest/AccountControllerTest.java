@@ -84,14 +84,14 @@ class AccountControllerTest {
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[1].id").isNumber())
                 .andExpect(content().json("""
-                                [{
-                                  "recordType": "LOGOUT",
-                                  "createdAt": "2018-01-03T09:30:45.000+0000"
-                                }, {
-                                  "recordType": "LOGIN",
-                                  "createdAt": "2018-01-02T18:08:08.000+0000"
-                                }]
-                                """));
+                        [{
+                          "recordType": "LOGOUT",
+                          "createdAt": "2018-01-03T09:30:45.000+0000"
+                        }, {
+                          "recordType": "LOGIN",
+                          "createdAt": "2018-01-02T18:08:08.000+0000"
+                        }]
+                        """));
     }
 
     @Test
