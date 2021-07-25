@@ -6,6 +6,7 @@ server.error:
 
 # Hibernate
 spring.jpa:
+  # Run scripts in data.sql after Hibernate is initialized
   defer-datasource-initialization: true
   properties.hibernate:
     hbm2ddl.auto: update
