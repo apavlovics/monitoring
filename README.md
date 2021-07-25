@@ -6,10 +6,10 @@ HSQLDB and does not persist data across launches. This is a deliberate choice fo
 
 ## System Requirements
 
-The application is tested to work with:
+The application uses:
 
-* Java 15
-* Gradle 6.6
+* Java 16
+* Gradle 7.1.1
 
 ## Configuration
 
