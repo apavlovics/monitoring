@@ -11,7 +11,7 @@ The application uses:
 
 ## Configuration
 
-The configuration for Spring Boot and Logback is stored in the *src/main/resources* folder.
+The configuration for Spring and Logback is stored in the *src/main/resources* folder.
 
 ## Testing
 
