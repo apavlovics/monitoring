@@ -6,8 +6,8 @@ This sample application shows how to build a simple REST API using [Spring](http
 
 The application uses:
 
-* Java 16
-* Gradle 7.1.1
+* Java 17
+* Gradle 7.3
 
 ## Configuration
 
