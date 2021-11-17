@@ -1,40 +1,41 @@
 plugins {
-  id 'java'
-  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-  id 'org.springframework.boot' version '2.5.6'
-  id 'io.freefair.lombok' version '6.2.0'
-}
-
-ext {
-  springfoxVersion = '3.0.0'
-  modelmapperVersion = '2.4.4'
-}
-
-repositories {
-  mavenLocal()
-  mavenCentral()
+    id 'java'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '2.5.6'
+    id 'io.freefair.lombok' version '6.2.0'
 }
 
 group = 'lv.continuum'
 version = '0.0.1'
 description = 'Monitoring'
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+ext {
+    springfoxVersion = '3.0.0'
+    modelmapperVersion = '2.4.4'
+}
 
 dependencies {
-  implementation 'org.springframework.boot:spring-boot-starter-validation'
-  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-  implementation 'org.springframework.boot:spring-boot-starter-web'
-  implementation "io.springfox:springfox-boot-starter:$springfoxVersion"
-  implementation "org.modelmapper:modelmapper:$modelmapperVersion"
-  implementation 'org.apache.commons:commons-lang3'
-  runtimeOnly 'org.hsqldb:hsqldb'
-  testImplementation('org.springframework.boot:spring-boot-starter-test') {
-      exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-  }
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "io.springfox:springfox-boot-starter:$springfoxVersion"
+    implementation "org.modelmapper:modelmapper:$modelmapperVersion"
+    implementation 'org.apache.commons:commons-lang3'
+    runtimeOnly 'org.hsqldb:hsqldb'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+compileJava {
+    options.release = 17
 }
 
 test {
-  useJUnitPlatform()
+    useJUnitPlatform()
 }
