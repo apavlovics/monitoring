@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lv.continuum.monitoring.model.RecordType;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.Instant;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
@@ -22,6 +22,5 @@ public class RecordDto {
     private RecordType recordType;
 
     @NotNull
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-    private Date createdAt = new Date();
+    private Instant createdAt = Instant.now();
 }

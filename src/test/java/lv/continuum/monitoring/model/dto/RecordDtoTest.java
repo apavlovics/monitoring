@@ -5,7 +5,7 @@ import lv.continuum.monitoring.model.Record;
 import lv.continuum.monitoring.model.RecordType;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
+import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,7 +13,7 @@ class RecordDtoTest extends AbstractModelTest {
 
     @Test
     void mapToRecord() {
-        var recordDto = new RecordDto(123, RecordType.LOGIN, new Date());
+        var recordDto = new RecordDto(123, RecordType.LOGIN, Instant.now());
 
         var record = modelMapper.map(recordDto, Record.class);
         assertEquals(recordDto.getId(), record.getId());
@@ -26,7 +26,7 @@ class RecordDtoTest extends AbstractModelTest {
         var record = new Record();
         record.setId(123);
         record.setRecordType(RecordType.LOGIN);
-        record.setCreatedAt(new Date());
+        record.setCreatedAt(Instant.now());
 
         var recordDto = modelMapper.map(record, RecordDto.class);
         assertEquals(record.getId(), recordDto.getId());
@@ -36,10 +36,10 @@ class RecordDtoTest extends AbstractModelTest {
 
     @Test
     void equalsHashCodeToString() {
-        var createdAt = new Date();
+        var createdAt = Instant.now();
         var recordDto = new RecordDto(123, RecordType.LOGIN, createdAt);
         var equalRecordDto = new RecordDto(123, RecordType.LOGIN, createdAt);
-        var notEqualRecordDto = new RecordDto(123, RecordType.LOGOUT, new Date());
+        var notEqualRecordDto = new RecordDto(123, RecordType.LOGOUT, Instant.now());
 
         super.equalsHashCodeToString(recordDto, equalRecordDto, notEqualRecordDto, false);
     }

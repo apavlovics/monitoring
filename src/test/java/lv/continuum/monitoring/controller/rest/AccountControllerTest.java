@@ -86,10 +86,10 @@ class AccountControllerTest {
                 .andExpect(content().json("""
                         [{
                           "recordType": "LOGOUT",
-                          "createdAt": "2018-01-03T09:30:45.000+0000"
+                          "createdAt": "2018-01-03T10:30:45.555Z"
                         }, {
                           "recordType": "LOGIN",
-                          "createdAt": "2018-01-02T18:08:08.000+0000"
+                          "createdAt": "2018-01-02T19:08:08.123Z"
                         }]
                         """));
     }

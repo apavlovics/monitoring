@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.Instant;
 
 @Entity(name = "records")
 @AllArgsConstructor
@@ -24,7 +24,7 @@ public class Record {
     private RecordType recordType;
 
     @Column(nullable = false)
-    private Date createdAt;
+    private Instant createdAt;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "accountId", nullable = false)
